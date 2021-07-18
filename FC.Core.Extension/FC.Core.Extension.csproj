@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -6,12 +6,31 @@
     <ApplicationIcon>plugin.ico</ApplicationIcon>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageTags>Extension</PackageTags>
+    <RepositoryUrl>https://github.com/fireloudapp/FC.Extensions</RepositoryUrl>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>	 
   </PropertyGroup>
 
+    <PropertyGroup>
+	    <DocumentationMarkdown>..\FC.Core.Extension.md</DocumentationMarkdown>
+    </PropertyGroup>
+	
   <ItemGroup>
     <Compile Remove="FC.Core.Extension.Test\**" />
     <EmbeddedResource Remove="FC.Core.Extension.Test\**" />
     <None Remove="FC.Core.Extension.Test\**" />
+  </ItemGroup>
+
+  <ItemGroup>	
+    <None Remove="plugin.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="MIT-License.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="plugin.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
