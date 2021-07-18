@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <ApplicationIcon>C:\Works\_FireCloudApps\FC.Extensions\FC.Core.Extension\plugin.ico</ApplicationIcon>
+    <ApplicationIcon>plugin.ico</ApplicationIcon>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageTags>Extension</PackageTags>
   </PropertyGroup>
