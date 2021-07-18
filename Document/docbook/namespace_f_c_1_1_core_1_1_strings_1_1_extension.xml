@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<section xmlns="http://docbook.org/ns/docbook" version="5.0" xmlns:xlink="http://www.w3.org/1999/xlink" xml:id="_namespace_f_c_1_1_core_1_1_strings_1_1_extension" xml:lang="en-US">
+<title>FC.Core.Strings.Extension Namespace Reference</title>
+<indexterm><primary>FC.Core.Strings.Extension</primary></indexterm>
+<simplesect>
+    <title>Classes    </title>
+        <itemizedlist>
+            <listitem><para>class <emphasis role="strong">EncryptOrDecryptExtension</emphasis></para>
+
+<para>Encrypt or Decrypt a string as a extension method. It uses RSA Standard algorithm to do this. </para>
+</listitem>
+            <listitem><para>class <emphasis role="strong">SecureHashExtension</emphasis></para>
+
+<para>Secure Hash - A Class extension to hash the string with various algorithms Ref: <link xlink:href="https://emn178.github.io/online-tools/sha256.html">https://emn178.github.io/online-tools/sha256.html</link> </para>
+</listitem>
+            <listitem><para>class <emphasis role="strong">ToJsonExtension</emphasis></para>
+
+<para>Converts String into JSON Value </para>
+</listitem>
+            <listitem><para>class <emphasis role="strong">ToModelExtension</emphasis></para>
+
+<para><link linkend="_namespace_f_c_1_1_core_1_1_strings_1_1_extension">Extension</link> class converts String to Model </para>
+</listitem>
+            <listitem><para>class <emphasis role="strong">ToPasswordHashExtension</emphasis></para>
+</listitem>
+            <listitem><para>class <link linkend="_class_f_c_1_1_core_1_1_strings_1_1_extension_1_1_password_hash_info">PasswordHashInfo</link></para>
+</listitem>
+            <listitem><para>class <emphasis role="strong">ToStreamExtension</emphasis></para>
+
+<para><link linkend="_namespace_f_c_1_1_core_1_1_strings_1_1_extension">Extension</link> class which converts string to stream object </para>
+</listitem>
+            <listitem><para>class <emphasis role="strong">TruncateExtension</emphasis></para>
+</listitem>
+            <listitem><para>class <emphasis role="strong">XMLToModelExtension</emphasis></para>
+
+<para><link linkend="_namespace_f_c_1_1_core_1_1_strings_1_1_extension">Extension</link> class which converts XML Document to Model object </para>
+</listitem>
+        </itemizedlist>
+</simplesect>
+</section>
