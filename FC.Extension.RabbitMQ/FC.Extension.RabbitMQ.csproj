@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  	<PropertyGroup>
+		<TargetFramework>netcoreapp3.1</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ApplicationIcon>rabbitmq-icon.ico</ApplicationIcon>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageIcon>rabbitmq-icon.png</PackageIcon>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Folder Include="Image\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Include="Image\rabbitmq-icon.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="RabbitMQ.Client" Version="6.2.1" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\FC.Core.Extension\FC.Core.Extension.csproj" />
+	</ItemGroup>
+
+</Project>

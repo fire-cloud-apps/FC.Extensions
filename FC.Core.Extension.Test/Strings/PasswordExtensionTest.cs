@@ -1,7 +1,7 @@
 ﻿using Xunit;
 using Shouldly;
 using Xunit.Abstractions;
-using FC.Core.Strings.Extension;
+using FC.Core.Extension.StringHandlers;
 
 namespace FC.Core.Extension.Test.Strings
 {
