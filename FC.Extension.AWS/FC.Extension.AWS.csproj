@@ -19,9 +19,5 @@
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
 	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="S3Handlers\" />
-	</ItemGroup>
 	
 </Project>
