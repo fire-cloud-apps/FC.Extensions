@@ -7,9 +7,10 @@
 		<PackageIcon>AWS.png</PackageIcon>
 	</PropertyGroup>
 
-	<ItemGroup>
-		<PackageReference Include="AWSSDK.Core" Version="3.7.0.25" />
-		<PackageReference Include="AWSSDK.KeyManagementService" Version="3.7.0.24" />
+	<ItemGroup>		
+		<PackageReference Include="AWSSDK.Core" Version="3.7.1" />
+		<PackageReference Include="AWSSDK.S3" Version="3.7.1.16" />
+		<PackageReference Include="AWSSDK.KeyManagementService" Version="3.7.1.13" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -18,10 +19,6 @@
 			<PackagePath></PackagePath>
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="S3Handlers\" />
 	</ItemGroup>
 	
 </Project>
