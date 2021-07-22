@@ -12,6 +12,7 @@
 
     <PropertyGroup>
 	    <DocumentationMarkdown>..\FC.Core.Extension.md</DocumentationMarkdown>
+	    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     </PropertyGroup>
 	
   <ItemGroup>
@@ -39,5 +40,18 @@
     <PackageReference Include="xunit.abstractions" Version="2.0.3" />
     <PackageReference Include="xunit.extensibility.core" Version="2.4.1" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Update="doc-generate.bat">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Vsxmd.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="Vsxmd.exe FC.Core.Extension.xml" />
+  </Target>
 
 </Project>
