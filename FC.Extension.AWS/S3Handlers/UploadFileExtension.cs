@@ -21,15 +21,15 @@ namespace FC.Extension.AWS.S3Handlers
             try
             {
                 localFilePath = new FileStream(filePath, FileMode.Open, FileAccess.Read);
-                string accessKey = awsConfig.S3Configuration.AccessKey;
-                string secretKey = awsConfig.S3Configuration.SecretKey;
+                string accessKey = awsConfig.AccessKey;
+                string secretKey = awsConfig.SecretKey;
                 if (string.IsNullOrEmpty(accessKey))
                 {
-                    client = new AmazonS3Client(awsConfig.S3Configuration.Region);//Use IAM Role
+                    client = new AmazonS3Client(awsConfig.Region);//Use IAM Role
                 }
                 else
                 {
-                    client = new AmazonS3Client(accessKey, secretKey, awsConfig.S3Configuration.Region);//Use Access Key & Secret Key
+                    client = new AmazonS3Client(accessKey, secretKey, awsConfig.Region);//Use Access Key & Secret Key
                 }
 
                 IAmazonS3 s3Client = client;

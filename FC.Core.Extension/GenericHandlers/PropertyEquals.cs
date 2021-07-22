@@ -4,17 +4,20 @@ using System.Text;
 
 namespace FC.Core.Extension.GenericHandlers
 {
+    /// <summary>
+    /// Compares two models or entity and retuns true if matches
+    /// </summary>
     public class PropertyEquals
     {
         /// <summary>
         /// Compares the two class property and provides the list of difference
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="self"></param>
-        /// <param name="to"></param>
-        /// <param name="ignore"></param>
+        /// <typeparam name="T">Model or Entity Type</typeparam>
+        /// <param name="self">Soruce Model?</param>
+        /// <param name="to">Compare with?</param>
+        /// <param name="ignore">Which property to ignore</param>
         /// <returns></returns>
-        public static bool PublicInstancePropertiesEqual<T>(T self, T to, params string[] ignore) where T : class
+        public static bool IsPropertiesEquals<T>(T self, T to, params string[] ignore) where T : class
         {
             if (self != null && to != null)
             {
