@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FC.Extension.ExecutionSample": {
+      "commandName": "Project",
+      "commandLineArgs": "Crypto -c \"Encrypt\""
+    }
+  }
+}

@@ -52,14 +52,13 @@
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		</None>
-	</ItemGroup>
-    <None Update="doc-generate.bat">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Vsxmd.exe">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+		</None>	
+        <None Update="doc-generate.bat">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="Vsxmd.exe">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
