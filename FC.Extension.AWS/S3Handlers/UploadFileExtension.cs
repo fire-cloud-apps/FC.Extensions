@@ -16,8 +16,9 @@ namespace FC.Extension.AWS.S3Handlers
         {
             Stream localFilePath = null;
             TransferUtility utility = null;
-            IAmazonS3 client = null;            
+            IAmazonS3 client = null;           
             bool result = false;
+
             try
             {
                 localFilePath = new FileStream(filePath, FileMode.Open, FileAccess.Read);
@@ -66,3 +67,4 @@ namespace FC.Extension.AWS.S3Handlers
         }
     }
 }
+

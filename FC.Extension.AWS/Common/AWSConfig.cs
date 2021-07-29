@@ -12,6 +12,7 @@ namespace FC.Extension.AWS.Common
     {
         public S3Config S3Configuration { get; set; }
     }
+
     public class S3Config 
     {        
         public string S3Region { get; set; }
@@ -38,3 +39,4 @@ namespace FC.Extension.AWS.Common
         public RegionEndpoint Region { get; set; } = RegionEndpoint.APSoutheast1;
     }
 }
+

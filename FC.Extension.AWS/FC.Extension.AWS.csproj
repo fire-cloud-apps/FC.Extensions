@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
@@ -6,6 +6,7 @@
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageIcon>AWS.png</PackageIcon>
 	</PropertyGroup>
+
 
 	<ItemGroup>		
 		<PackageReference Include="AWSSDK.Core" Version="3.7.1" />
