@@ -3,7 +3,6 @@
   <PropertyGroup>
     <OutputType>Library</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <ApplicationIcon>plugin.ico</ApplicationIcon>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageTags>Extension</PackageTags>
     <RepositoryUrl>https://github.com/fireloudapp/FC.Extensions</RepositoryUrl>
@@ -11,7 +10,12 @@
   </PropertyGroup>
 
     <PropertyGroup>
-	    <DocumentationMarkdown>..\FC.Core.Extension.md</DocumentationMarkdown>
+	    <DocumentationMarkdown>..\FC.Core.Extension.md</DocumentationMarkdown>	    
+	    <PackageProjectUrl>https://github.com/fireloudapp/FC.Extensions</PackageProjectUrl>
+	    <Description>The objective of this extension was to bring all the repetead application logics into a simple extension, so the developers focus on the core logic and reuse the code in all their application.</Description>
+	    <Copyright>SRG</Copyright>
+	    <RepositoryType>git</RepositoryType>
+	    <PackageLicenseFile></PackageLicenseFile>
     </PropertyGroup>
 	
   <ItemGroup>
@@ -36,8 +40,19 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Cryptography.KeyDerivation" Version="5.0.8" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="xunit.abstractions" Version="2.0.3" />
-    <PackageReference Include="xunit.extensibility.core" Version="2.4.1" />
+   
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Image\" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<None Include="Image\plugin.png">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
 
 </Project>
