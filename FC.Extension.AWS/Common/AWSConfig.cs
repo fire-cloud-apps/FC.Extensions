@@ -12,12 +12,13 @@ namespace FC.Extension.AWS.Common
     {
         public S3Config S3Configuration { get; set; }
     }
-    public class S3Config
-    {
+
+    public class S3Config 
+    {        
         public string S3Region { get; set; }
         public string BucketName { get; set; }
         public string SubDirectoryInBucket { get; set; }
-        public string FileNameInS3 { get; set; }
+        public string FileNameInS3 { get; set; }        
     }
     /// <summary>
     /// A Base configuration property inherited by AWSConfig
@@ -38,3 +39,4 @@ namespace FC.Extension.AWS.Common
         public RegionEndpoint Region { get; set; } = RegionEndpoint.APSoutheast1;
     }
 }
+
