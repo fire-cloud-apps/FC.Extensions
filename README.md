@@ -44,6 +44,8 @@ Console.WriteLine($"Plan Text : {Value} Encrypted Value : {encryptedValue} Key :
 ````
 
 > ⚠️ All Set. Use the same method for other extension methods.
+The full featured document available in the [Gitbook](https://app.gitbook.com/@sr-firecloud/s/fc-extension),
+ 
 
 ## Other Extension
 
