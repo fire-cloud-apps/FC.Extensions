@@ -36,7 +36,7 @@ namespace FC.Core.Extension.DateHandlers
         /// <param name="dateOfBirth">date of birth of a person or product</param>
         /// <example>
         /// <code lang="csharp">
-        /// var dt = new DateTime(year: 1984, month: 6, day: 14);
+        /// var dt = new DateTime(year: 2016, month: 2, day: 25);
         /// double myAge = dt.AgeInMonth();
         /// </code>
         /// </example>
