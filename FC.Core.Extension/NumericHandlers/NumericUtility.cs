@@ -9,6 +9,7 @@ namespace FC.Core.Extension.NumericHandlers
     /// </summary>
     public static class NumericUtility
     {
+        #region Get Random Number
         private static readonly Random getrandom = new Random();
         /// <summary>
         /// Generate the random number
@@ -23,5 +24,28 @@ namespace FC.Core.Extension.NumericHandlers
                 return getrandom.Next(min, max);
             }
         }
+        #endregion
+
+        #region Percentage Calculation
+        /// <summary>
+        /// Find the percentage of a integer value
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="percent"></param>
+        /// <returns></returns>
+        public static double PercentageOf(this int value, int percent)
+        {
+            double perValue = (double)percent / 100;
+            var actualPercentValue = (perValue * value);
+            return actualPercentValue;
+        }
+
+        public static double PercentageOf(this double value, double percent)
+        {
+            double perValue = (double)percent / 100;
+            double actualPercentValue = (perValue * value);
+            return actualPercentValue;
+        }
+        #endregion
     }
 }
