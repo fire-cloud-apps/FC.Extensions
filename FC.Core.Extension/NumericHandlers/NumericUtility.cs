@@ -30,16 +30,21 @@ namespace FC.Core.Extension.NumericHandlers
         /// <summary>
         /// Find the percentage of a integer value
         /// </summary>
-        /// <param name="value"></param>
-        /// <param name="percent"></param>
-        /// <returns></returns>
+        /// <param name="value">numberical value to be calculated.</param>
+        /// <param name="percent">expected percentage value</param>
+        /// <returns>returns % of a value eg. 5% of 840 is 42</returns>
         public static double PercentageOf(this int value, int percent)
         {
             double perValue = (double)percent / 100;
             var actualPercentValue = (perValue * value);
             return actualPercentValue;
         }
-
+        /// <summary>
+        /// Finds the percentage of a double value
+        /// </summary>
+        /// <param name="value">numberical value to be calculated.</param>
+        /// <param name="percent">expected percentage value</param>
+        /// <returns>returns % of a value eg. 5% of 840 is 42</returns>
         public static double PercentageOf(this double value, double percent)
         {
             double perValue = (double)percent / 100;
