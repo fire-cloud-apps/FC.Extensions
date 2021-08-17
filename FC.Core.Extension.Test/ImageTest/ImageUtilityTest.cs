@@ -37,5 +37,26 @@ namespace FC.Core.Extension.Test.ImageTest
             _output.WriteLine($"Image As Base64 Image : {base64Image}");
 
         }
+
+        [Fact]
+        public async Task GetImageAsByteFile_Test()
+        {
+            string fileImage = @"C:\Users\RR210250\Pictures\api.png";
+            byte[] imageArray = ImageUtility.GetImageAsByte(fileImage);
+            imageArray.Length.ShouldBeGreaterThan(0);
+            _output.WriteLine($"Image As Array Length {imageArray.Length}");
+        }
+
+        [Fact]
+        public async Task GetImageAsBase64File_Test()
+        {
+            string fileImage = @"C:\Users\RR210250\Pictures\api.png";
+            byte[] imageArray = ImageUtility.GetImageAsByte(fileImage);
+            imageArray.Length.ShouldBeGreaterThan(0);
+            _output.WriteLine($"Image As Array Length : {imageArray.Length}");
+            string base64Image = ImageUtility.ImageToBase64(fileImage);
+            _output.WriteLine($"Image As Base64 Image : {base64Image}");
+
+        }
     }
 }
