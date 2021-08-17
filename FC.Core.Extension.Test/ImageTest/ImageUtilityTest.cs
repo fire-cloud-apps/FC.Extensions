@@ -16,6 +16,7 @@ namespace FC.Core.Extension.Test.ImageTest
         {
             this._output = output;
         }
+
         [Fact]
         public async Task GetImageAsByte_Test()
         {
@@ -23,6 +24,18 @@ namespace FC.Core.Extension.Test.ImageTest
             byte[] imageArray = ImageUtility.GetImageAsByte(uri);
             imageArray.Length.ShouldBeGreaterThan(0);
             _output.WriteLine($"Image As Array Length {imageArray.Length}");
+        }
+
+        [Fact]
+        public async Task GetImageAsBase64_Test()
+        {
+            Uri uri = new Uri("https://blog.cellenza.com/wp-content/uploads/2017/08/article-Migrating-from-TFVC-to-Git.jpg");
+            byte[] imageArray = ImageUtility.GetImageAsByte(uri);
+            imageArray.Length.ShouldBeGreaterThan(0);
+            _output.WriteLine($"Image As Array Length : {imageArray.Length}");
+            string base64Image = ImageUtility.ImageToBase64(uri);
+            _output.WriteLine($"Image As Base64 Image : {base64Image}");
+
         }
     }
 }
