@@ -14,14 +14,14 @@ namespace FC.Core.Extension.ImageHandlers
 		/// <summary>
 		/// Reads the image from the URL and return as Byte array
 		/// </summary>
-		/// <param name="url">image url</param>
+		/// <param name="httpURL">image url</param>
 		/// <example>
 		/// <code lang="csharp">
 		/// byte[] imageArray = ImageAsByte.GetImageAsByte("https://domain.com/file/avatar.png");
 		/// </code>
 		/// </example>
 		/// <returns>return as byte array</returns>
-		public static byte[] GetImageAsByte(string url)
+		public static byte[] GetImageAsByte(Uri httpURL)
 		{
 			Stream stream = null;
 			byte[] buf;
@@ -30,7 +30,8 @@ namespace FC.Core.Extension.ImageHandlers
 
 			try
 			{
-				req = WebRequest.Create(url) as HttpWebRequest;
+				//Uri uri = new Uri(httpURL);
+				req = WebRequest.Create(httpURL) as HttpWebRequest;
 				response = req.GetResponse() as HttpWebResponse;
 				stream = response.GetResponseStream();
 
@@ -56,6 +57,43 @@ namespace FC.Core.Extension.ImageHandlers
 
 			return (buf);
 		}
+
+		/// <summary>
+		/// Get the http URL image as base64 image string.
+		/// </summary>
+		/// <param name="httpURL">HTTP URL path of the image.</param>
+		/// <returns>returns base64 string as image</returns>
+		public static string ImageToBase64(Uri httpURL)
+        {
+			byte[] imageAsByte = GetImageAsByte(httpURL);
+			string base64String = Convert.ToBase64String(imageAsByte);
+			return base64String;
+		}
+
+		/// <summary>
+		/// Get the image as Byte array
+		/// </summary>
+		/// <param name="fileURL">image form file path eg. @"C:\srg\45896\fileimge.jpg"</param>
+		/// <returns>image as byte array</returns>
+		public static byte[] GetImageAsByte(string fileURL)
+        {			
+			byte[] data = File.ReadAllBytes(fileURL);
+			return data;
+		}
+
+		/// <summary>
+		/// Converts the image to Base64 string
+		/// </summary>
+		/// <param name="fileURL">image form file path eg. @"C:\srg\45896\fileimge.jpg"</param>
+		/// <returns>image as base64 string</returns>
+		public static string ImageToBase64(string fileURL)
+		{
+			byte[] imageAsByte = GetImageAsByte(fileURL);
+			string base64String = Convert.ToBase64String(imageAsByte);
+			return base64String;
+		}
+
+
 
 	}
 }
