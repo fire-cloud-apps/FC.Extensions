@@ -30,6 +30,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FC.Core.Extension\FC.Core.Extension.csproj" />
+    <ProjectReference Include="..\FC.Extension.ExecutionSample\FC.Extension.ExecutionSample.csproj" />
   </ItemGroup>
 
 </Project>

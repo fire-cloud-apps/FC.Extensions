@@ -11,8 +11,6 @@ namespace FC.Extension.ExecutionSample.Strings
     [Command("Crypto")]
     public class EncryptExtension_Command : ICommand
     {        
-        
-
         [CommandOption("Crypto", 'c', Description = "Crypto Option")]
         public CryptoOption Crypto { get; set; }
 
@@ -23,30 +21,30 @@ namespace FC.Extension.ExecutionSample.Strings
             string value = string.Empty;
             string key = string.Empty;
             string encryptedValue = string.Empty;
-            string decryptedValue = string.Empty;   
+            string decryptedValue = string.Empty;
             switch (Crypto)
             {
                 case CryptoOption.Encrypt:
                     console.Output.WriteLine("Please input a value to Encrypt");
-                    value = console.Input.ReadLine();
+                    value = Guid.NewGuid().ToString();
                     console.Output.WriteLine("Please input a key");
-                    key = console.Input.ReadLine();
+                    key = Guid.NewGuid().ToString(); 
                     encryptedValue = value.Encrypt(key);
                     console.Output.WriteLine($"Plan Text : {value} Encrypted Value : {encryptedValue} Key : {key}");
                     break;
                 case CryptoOption.Decrypt:
                     console.Output.WriteLine("Please input a value to Encrypt");
-                    value = console.Input.ReadLine();
+                    value = Guid.NewGuid().ToString();
                     console.Output.WriteLine("Please input a key");
-                    key = console.Input.ReadLine();
-                    encryptedValue = value.Encrypt(key);                    
+                    key = Guid.NewGuid().ToString();
+                    encryptedValue = value.Encrypt(key);
                     console.Output.WriteLine($"Plan Text : {value} Encrypted Value : {encryptedValue} Key : {key}");
                     decryptedValue = encryptedValue.Decrypt(key);
                     console.Output.WriteLine($"Plan Text : {value} Decrypted Value : {decryptedValue} Key : {key}");
                     break;
                 case CryptoOption.GenerateHash:
                     console.Output.WriteLine("Please input a value to Hash");
-                    string plainText = console.Input.ReadLine();
+                    string plainText = Guid.NewGuid().ToString();
                     foreach (HashAlgorithms algorithms in Enum.GetValues(typeof(HashAlgorithms)))
                     {
                         console.Output.WriteLine($"Algorithm : {algorithms.ToString()} Hash Value :{plainText.SecureHash(algorithms)}");

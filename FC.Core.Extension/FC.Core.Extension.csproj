@@ -61,8 +61,8 @@
         </None>
   </ItemGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+  <!--<Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="Vsxmd.exe FC.Core.Extension.xml" />
-  </Target>
+  </Target>-->
 
 </Project>
