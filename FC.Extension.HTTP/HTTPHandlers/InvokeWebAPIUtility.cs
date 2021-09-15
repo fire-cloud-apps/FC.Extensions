@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using RestSharp;
@@ -33,7 +34,7 @@ namespace FC.Extension.HTTP.HTTPHandlers
         /// </code>
         /// </example>
         /// <returns>returns RestResponse with JObject</returns>
-        public static IRestResponse<JObject> InvokeApi(Uri apiUrl, RestClient restClient, Method method, dynamic parameterModel = null, Dictionary<string, string> headersList = null, Dictionary<string, string> fileList = null)
+        public static async Task<IRestResponse<JObject>> InvokeApi(Uri apiUrl, RestClient restClient, Method method, dynamic parameterModel = null, Dictionary<string, string> headersList = null, Dictionary<string, string> fileList = null)
         {
             if (restClient == null)
             {
@@ -63,7 +64,7 @@ namespace FC.Extension.HTTP.HTTPHandlers
                 restRequest.AddHeader("Content-Type", "multipart/form-data");
             }
 
-            return restClient.Execute<JObject>(restRequest);
+            return await restClient.ExecuteAsync<JObject>(restRequest);
         }
         
         #endregion
