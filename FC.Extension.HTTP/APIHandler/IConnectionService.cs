@@ -14,7 +14,7 @@ namespace FC.Extension.HTTP.APIHandler
     public interface IConnectionService
     {
         string GetDBConnection(IConfiguration configuration, IHttpContextAccessor httpContext,
-            string connectionValue, string tokenHeader, string additionalInfo);
+            string connectionValue = "DBSettings:ClientDB", string tokenHeader = "Authorization", string additionalInfo = "info");
     }
 
     public class ConnectionService : IConnectionService
