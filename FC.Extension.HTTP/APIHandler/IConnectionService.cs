@@ -15,11 +15,13 @@ namespace FC.Extension.HTTP.APIHandler
     {
         string GetDBConnection(IConfiguration configuration, IHttpContextAccessor httpContext,
             string connectionValue = "DBSettings:ClientDB", string tokenHeader = "Authorization", string additionalInfo = "info");
+        AuthUser GetAuthUser();
     }
 
     public class ConnectionService : IConnectionService
     {
         string _connectionString;
+        public AuthUser _AuthUser;
 
         public string GetDBConnection(IConfiguration configuration, IHttpContextAccessor httpContext,
             string connectionValue = "DBSettings:ClientDB", string tokenHeader = "Authorization", string additionalInfo = "info")
@@ -33,99 +35,104 @@ namespace FC.Extension.HTTP.APIHandler
             var token = new JwtSecurityToken(jwtEncodedString: jwtEncodedString);
             var userInfo = token.Claims.First(c => c.Type == additionalInfo).Value;
             //Console.WriteLine("email => " + token.Claims.First(c => c.Type == "email").Value);
-            AuthUser authUser = JsonConvert.DeserializeObject<AuthUser>(userInfo);
-
+            AuthUser authUser = JsonConvert.DeserializeObject<AuthUser>(userInfo);            
             _connectionString = string.Format(_connectionString, authUser.ClientDBName);
+            _AuthUser = authUser;
             return _connectionString;
         }
 
-        public class AuthUser
+        public AuthUser GetAuthUser()
         {
-            public int Id
-            {
-                get;
-                set;
-            }
-
-            public string FirstName
-            {
-                get;
-                set;
-            }
-
-            public string LastName
-            {
-                get;
-                set;
-            }
-
-            public string Phone
-            {
-                get;
-                set;
-            }
-
-            public string Email
-            {
-                get;
-                set;
-            }
-
-            public string PasswordHash
-            {
-                get;
-                set;
-            }
-
-            public bool IsActive
-            {
-                get;
-                set;
-            } = true;
-
-
-            public string Role
-            {
-                get;
-                set;
-            }
-
-            public string Token
-            {
-                get;
-                set;
-            }
-
-            public string LoginIp
-            {
-                get;
-                set;
-            }
-
-            public string ClientDBName
-            {
-                get;
-                set;
-            }
-
-            public int StaffId
-            {
-                get;
-                set;
-            }
-
-            public DateTime LastLogin
-            {
-                get;
-                set;
-            }
-
-            public int AccountId
-            {
-                get;
-                set;
-            }
+            return _AuthUser;
         }
 
+    }
+
+    public class AuthUser
+    {
+        public int Id
+        {
+            get;
+            set;
+        }
+
+        public string FirstName
+        {
+            get;
+            set;
+        }
+
+        public string LastName
+        {
+            get;
+            set;
+        }
+
+        public string Phone
+        {
+            get;
+            set;
+        }
+
+        public string Email
+        {
+            get;
+            set;
+        }
+
+        public string PasswordHash
+        {
+            get;
+            set;
+        }
+
+        public bool IsActive
+        {
+            get;
+            set;
+        } = true;
+
+
+        public string Role
+        {
+            get;
+            set;
+        }
+
+        public string Token
+        {
+            get;
+            set;
+        }
+
+        public string LoginIp
+        {
+            get;
+            set;
+        }
+
+        public string ClientDBName
+        {
+            get;
+            set;
+        }
+
+        public int StaffId
+        {
+            get;
+            set;
+        }
+
+        public DateTime LastLogin
+        {
+            get;
+            set;
+        }
+
+        public int AccountId
+        {
+            get;
+            set;
+        }
     }
 }
