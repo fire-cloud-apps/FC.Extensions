@@ -1,26 +1,22 @@
-﻿using FC.Core.Extension.StringHandlers;
-using FC.Extension.SQL.Helper;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
+using FC.Core.Extension.StringHandlers;
 using FC.Extension.SQL.Interface;
 using FC.Extension.SQL.PostgreSQL;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
-using System.Linq.Expressions;
-using System.Linq;
 using RepoDb;
 using RepoDb.Enumerations;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 using SqlKata;
-using System.Diagnostics;
 
 namespace FC.Extension.HTTP.APIHandler
 {
     /// <summary>
-    /// 
+    /// Base API which is using Postgre-SQL as a database platform
     /// </summary>
     /// <typeparam name="TModel"></typeparam>
     /// <typeparam name="TController"></typeparam>
@@ -31,7 +27,6 @@ namespace FC.Extension.HTTP.APIHandler
         protected ILogger<TController> _logger = null;
         protected IBaseAccess<TModel> _baseAccess = null;
         #endregion
-
 
         #region Constructor
 
@@ -216,20 +211,5 @@ namespace FC.Extension.HTTP.APIHandler
             return logMsg;
         }
         #endregion
-    }
-
-    public class TraceDB : BaseTrace
-    {
-        public override void BeforeBatchQuery(CancellableTraceLog log)
-        {
-            Console.WriteLine($"BeforeBatchQuery: {log.Statement}, TotalTime: {log.ExecutionTime.TotalSeconds} second(s)");
-            //base.BeforeBatchQuery(log);
-        }
-
-        public override void AfterBatchQuery(TraceLog log)
-        {
-            Console.WriteLine($"AfterBatchQuery: {log.Statement}, TotalTime: {log.ExecutionTime.TotalSeconds} second(s)");
-
-        }
     }
 }
