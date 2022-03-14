@@ -20,19 +20,12 @@ namespace FC.Core.Extension.Test.DummyModel
     }
     public class DummyData
     {
-
         [DisplayName("# ID")]
         public string ID { get; set; }
 
         [DisplayName("Full Name")]
         public string Name { get; set; }
-
-
         public string Address { get; set; }
-
-
         public string Age { get; set; }
-
-
     }
 }

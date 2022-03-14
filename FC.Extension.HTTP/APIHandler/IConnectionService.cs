@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Text;
+using FC.Extension.SQL.Helper;
 
 namespace FC.Extension.HTTP.APIHandler
 {
@@ -15,6 +16,9 @@ namespace FC.Extension.HTTP.APIHandler
     {
         string GetDBConnection(IConfiguration configuration, IHttpContextAccessor httpContext,
             string connectionValue = "DBSettings:ClientDB", string tokenHeader = "Authorization", string additionalInfo = "info");
+
+        SQLConfig GetNoSQLConfig(IConfiguration configuration, string connectionValue = "ClientDB",
+            string collectionName = "CollectionName", string dbName = "DataBaseName");
         AuthUser GetAuthUser();
     }
 
@@ -41,6 +45,16 @@ namespace FC.Extension.HTTP.APIHandler
             return _connectionString;
         }
 
+        public SQLConfig GetNoSQLConfig(IConfiguration configuration, string connectionValue ="ClientDB", string collectionName ="CollectionName", string dbName ="DataBaseName")
+        {
+            SQLConfig config = new SQLConfig()
+            {
+                ConnectionString = configuration.GetValue<string>(connectionValue),
+                CollectionName = configuration.GetValue<string>(collectionName),
+                DataBaseName = configuration.GetValue<string>(dbName)
+            };
+            return config;
+        }
         public AuthUser GetAuthUser()
         {
             return _AuthUser;
