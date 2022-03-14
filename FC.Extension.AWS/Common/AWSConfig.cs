@@ -13,6 +13,9 @@ namespace FC.Extension.AWS.Common
         public S3Config S3Configuration { get; set; }
     }
 
+    /// <summary>
+    /// S3 Configuration for file upload.
+    /// </summary>
     public class S3Config 
     {        
         public string S3Region { get; set; }

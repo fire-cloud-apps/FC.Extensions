@@ -1,24 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq.Expressions;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using FC.Core.Extension.StringHandlers;
-using FC.Extension.SQL.Engine;
 using FC.Extension.SQL.Helper;
 using FC.Extension.SQL.Interface;
 using FC.Extension.SQL.Mongo;
-using FC.Extension.SQL.PostgreSQL;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using MongoDB.Bson;
-using RepoDb;
-using RepoDb.Enumerations;
 using MongoDB.Driver;
-using SqlKata;
 
 namespace FC.Extension.HTTP.APIHandler
 {
@@ -32,8 +25,8 @@ namespace FC.Extension.HTTP.APIHandler
     {
         #region Variables
 
-        readonly ILogger<TController>? _logger = null;
-        readonly INoSQLBaseAccess<TModel>? _baseAccess = null;
+        public ILogger<TController>? _logger = null;
+        public INoSQLBaseAccess<TModel>? _baseAccess = null;
 
         #endregion
 
