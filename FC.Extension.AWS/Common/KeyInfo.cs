@@ -13,10 +13,10 @@ namespace FC.Extension.AWS.Common
         /// <summary>
         /// Plain Key from KMS Service
         /// </summary>
-        public string Plainkey { get; set; }
+        public string? Plainkey { get; set; }
         /// <summary>
         /// Cypher Key from KMS Service
         /// </summary>
-        public string CypherKey { get; set; }
+        public string? CypherKey { get; set; }
     }
 }
