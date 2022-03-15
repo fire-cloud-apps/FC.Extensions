@@ -45,7 +45,7 @@ namespace FC.Extension.HTTP.APIHandler
             return _connectionString;
         }
 
-        public SQLConfig GetNoSQLConfig(IConfiguration configuration, string connectionValue ="ClientDB", string collectionName ="CollectionName", string dbName ="DataBaseName")
+        public SQLConfig GetNoSQLConfig(IConfiguration configuration, string connectionValue ="DBSettings:ClientDB", string collectionName ="DBSettings:CollectionName", string dbName ="DBSettings:DataBaseName")
         {
             SQLConfig config = new SQLConfig()
             {

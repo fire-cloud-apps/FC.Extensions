@@ -42,14 +42,14 @@ namespace FC.Extension.HTTP.APIHandler
         public MongoDBBaseAPI(ILogger<TController>? logger, IConfiguration configuration,
             IConnectionService connectionService, IHttpContextAccessor httpContext)
         {
-            var connectionString = connectionService.GetDBConnection(configuration, httpContext);
-            ConnectionString = connectionString;
+            //var connectionString = connectionService.GetDBConnection(configuration, httpContext);
+            //ConnectionString = connectionString;
             
             SQLConfig config  = connectionService.GetNoSQLConfig(configuration);
             config.Compiler = SQLCompiler.MongoDB;
             config.CollectionName = typeof(TModel).Name;//Returns class name of the model. Class name and mongodb table name should be same.
             config.DBType = DBType.NoSQL;
-            
+            ConnectionString = config.ConnectionString;
             _baseAccess = new MongoDataAccess<TModel>(config);
             _logger = logger;
             _logger.LogInformation($"API {nameof(TController)} Initiated.");
@@ -100,13 +100,13 @@ namespace FC.Extension.HTTP.APIHandler
 
         #region Yet to be done
 
-         /// <summary>
-        /// Get the Model details by Batch and splits into Page.
-        /// </summary>
-        /// <param name="start">Page start value usually '0' </param>
-        /// <param name="length">Page length value usually '10' </param>
-        /// <param name="order">Ordering Ascending or Descending </param>
-        /// <returns>returns no of Models</returns>
+        // /// <summary>
+        // /// Get the Model details by Batch and splits into Page.
+        // /// </summary>
+        // /// <param name="start">Page start value usually '0' </param>
+        // /// <param name="length">Page length value usually '10' </param>
+        // /// <param name="order">Ordering Ascending or Descending </param>
+        // /// <returns>returns no of Models</returns>
         // [Route("GetByPage")]
         // [HttpGet]
         // public async Task<IEnumerable<TModel>> GetByPage(int start = 0, int length = 10, string order = "D")
