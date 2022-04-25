@@ -100,13 +100,13 @@ namespace FC.Extension.HTTP.APIHandler
             return SQLExtension.SQLConfig;
         }
 
-        public object GetPropertyValue(TModel model, string propertyName)
-        {
-            Type type = model.GetType();
-            PropertyInfo prop = type.GetProperty(propertyName);
-            object value = prop.GetValue(model);
-            return value;
-        }
+        // public object GetPropertyValue(TModel model, string propertyName)
+        // {
+        //     Type type = model.GetType();
+        //     PropertyInfo prop = type.GetProperty(propertyName);
+        //     object value = prop.GetValue(model);
+        //     return value;
+        // }
 
         public MongoDBBaseAPI()
         {
