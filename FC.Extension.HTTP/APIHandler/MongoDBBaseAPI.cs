@@ -83,10 +83,11 @@ namespace FC.Extension.HTTP.APIHandler
             _logger.LogInformation($"API {nameof(TController)} Initiated.");
         }
 
-        private SQLConfig MongoDBConfig(IConfiguration configuration, string modelName)
+        private SQLConfig MongoDBConfig(IConfiguration configuration, string modelName, 
+            string server = "MongoSettings:Server", string db="MongoSettings:DataBaseName")
         {
-            string clientURL = configuration.GetValue<string>("MongoSettings:Server");
-            string clientDB = configuration.GetValue<string>("MongoSettings:DataBaseName");
+            string clientURL = configuration.GetValue<string>(server);
+            string clientDB = configuration.GetValue<string>(db);
             string conectionString = string.Format($"{clientURL}", clientDB);
             SQLExtension.SQLConfig = new SQLConfig()
             {
@@ -99,14 +100,19 @@ namespace FC.Extension.HTTP.APIHandler
             _sqlConfig = SQLExtension.SQLConfig;
             return SQLExtension.SQLConfig;
         }
-
-        // public object GetPropertyValue(TModel model, string propertyName)
-        // {
-        //     Type type = model.GetType();
-        //     PropertyInfo prop = type.GetProperty(propertyName);
-        //     object value = prop.GetValue(model);
-        //     return value;
-        // }
+        
+        public MongoDBBaseAPI(MongoDBParams<TController> param)
+        {
+            SQLConfig sqlConfig = MongoDBConfig(
+                param.Configuration,
+                typeof(TModel).Name,
+                server: param.DBURL_ConfigurationValue,
+                db: param.DBName_ConfigurationValue
+            );
+            _baseAccess = new MongoDataAccess<TModel>(sqlConfig);
+            _logger = param.Logger;
+            _logger.LogInformation($"API {nameof(TController)} Initiated.");
+        }
 
         public MongoDBBaseAPI()
         {
