@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using FC.Core.Extension.StringHandlers;
+using FC.Extension.SQL.Engine;
 using FC.Extension.SQL.Helper;
 using FC.Extension.SQL.Interface;
 using FC.Extension.SQL.Mongo;
@@ -25,8 +28,40 @@ namespace FC.Extension.HTTP.APIHandler
     {
         #region Variables
 
-        public ILogger<TController>? _logger = null;
-        public INoSQLBaseAccess<TModel>? _baseAccess = null;
+        private ILogger<TController>? _logger = null;
+        private INoSQLBaseAccess<TModel>? _baseAccess = null;
+        private SQLConfig? _sqlConfig = null;
+
+        #endregion
+
+        #region Public Property
+
+        /// <summary>
+        /// ILogger to handle in child class
+        /// </summary>
+        public ILogger<TController>? Logger
+        {
+            get { return _logger; }
+            set { _logger = value; }
+        }
+
+        /// <summary>
+        /// Get BaseAccess to have custom definition logic to be built
+        /// </summary>
+        public INoSQLBaseAccess<TModel>? BaseAccess
+        {
+            get { return _baseAccess; }
+            set { _baseAccess = value; }
+        }
+
+        /// <summary>
+        /// Get SQLConfig to handle in client class for debugging.
+        /// </summary>
+        public SQLConfig SQL_NoSQL_Config
+        {
+            get { return _sqlConfig; }
+            set { _sqlConfig = value; }
+        }
 
         #endregion
 
@@ -42,21 +77,36 @@ namespace FC.Extension.HTTP.APIHandler
         public MongoDBBaseAPI(ILogger<TController>? logger, IConfiguration configuration,
             IConnectionService connectionService, IHttpContextAccessor httpContext)
         {
-            //var connectionString = connectionService.GetDBConnection(configuration, httpContext);
-            //ConnectionString = connectionString;
-            
-            SQLConfig config  = connectionService.GetNoSQLConfig(configuration);
-            config.Compiler = SQLCompiler.MongoDB;
-            config.CollectionName = typeof(TModel).Name;//Returns class name of the model. Class name and mongodb table name should be same.
-            config.DBType = DBType.NoSQL;
-            ConnectionString = config.ConnectionString;
-            _baseAccess = new MongoDataAccess<TModel>(config);
+            SQLConfig sqlConfig = MongoDBConfig(configuration, typeof(TModel).Name);
+            _baseAccess = new MongoDataAccess<TModel>(sqlConfig);
             _logger = logger;
             _logger.LogInformation($"API {nameof(TController)} Initiated.");
         }
 
-        public string ConnectionString { get; set; }
+        private SQLConfig MongoDBConfig(IConfiguration configuration, string modelName)
+        {
+            string clientURL = configuration.GetValue<string>("MongoSettings:Server");
+            string clientDB = configuration.GetValue<string>("MongoSettings:DataBaseName");
+            string conectionString = string.Format($"{clientURL}", clientDB);
+            SQLExtension.SQLConfig = new SQLConfig()
+            {
+                Compiler = SQLCompiler.MongoDB,
+                DBType = DBType.NoSQL,
+                ConnectionString = conectionString,
+                DataBaseName = clientDB,
+                CollectionName = modelName
+            };
+            _sqlConfig = SQLExtension.SQLConfig;
+            return SQLExtension.SQLConfig;
+        }
 
+        public object GetPropertyValue(TModel model, string propertyName)
+        {
+            Type type = model.GetType();
+            PropertyInfo prop = type.GetProperty(propertyName);
+            object value = prop.GetValue(model);
+            return value;
+        }
 
         public MongoDBBaseAPI()
         {
@@ -88,7 +138,8 @@ namespace FC.Extension.HTTP.APIHandler
         public async Task<string> GetById(string id)
         {
             var filter = Builders<BsonDocument>.Filter.Eq("_id", ObjectId.Parse(id));
-            IEnumerable<BsonDocument> models = await _baseAccess.GenericCollection.FindAsync(filter).Result.ToListAsync <BsonDocument>();
+            IEnumerable<BsonDocument> models =
+                await _baseAccess.GenericCollection.FindAsync(filter).Result.ToListAsync<BsonDocument>();
             //"Id" is the fixed field and it cannot be changed. 
             if (models != null)
             {
@@ -157,7 +208,7 @@ namespace FC.Extension.HTTP.APIHandler
         // }
 
         #endregion
-       
+
 
         #endregion
 
